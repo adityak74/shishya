@@ -1,3 +1,5 @@
+require 'json'
+
 class YoutubeController < ActionController::API
     VIDEO_LIMIT = 10
     COMMENT_LIMIT = 20
@@ -21,5 +23,10 @@ class YoutubeController < ActionController::API
         rescue Exception => e
             render json: { status: 400, message: "invalid channel id" }, status: 400
         end
+    end
+    def getChannelId
+        url = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResults=10&q=#{params[:searchString]}&key=#{ENV['GOOGLE_API_KEY']}"
+        body = HTTP.get(url).body
+        render json: { status: 200, search_results: JSON.parse(body) }
     end
 end
