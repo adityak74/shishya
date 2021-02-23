@@ -44,3 +44,5 @@ gem 'yt-core', '~> 0.1.0'
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem "http"
+
+gem 'discordrb'

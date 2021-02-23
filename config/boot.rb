@@ -4,3 +4,9 @@ require "bundler/setup" # Set up gems listed in the Gemfile.
 require "bootsnap/setup" # Speed up boot time by caching expensive operations.
 
 require 'dotenv/load'
+
+require_relative '../app/bot/discord/pingBot'
+
+thr = Thread.new {
+    DiscordPingBot.new.run
+}
